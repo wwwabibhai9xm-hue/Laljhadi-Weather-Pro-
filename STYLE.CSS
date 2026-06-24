@@ -103,16 +103,17 @@ footer {
 
 /* DARK MODE */
 .dark {
-    background: #121212;
+    background: #111;
     color: white;
+}
+
+.card {
+    padding: 10px;
+    margin: 5px;
+    background: #eee;
+    border-radius: 10px;
 }
 
 .dark .card {
-    background: #1f1f1f;
-    color: white;
-}
-
-.dark header,
-.dark footer {
-    background: #000;
+    background: #222;
 }

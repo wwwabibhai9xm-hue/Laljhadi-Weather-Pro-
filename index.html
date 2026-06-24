@@ -11,24 +11,25 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <!-- Leaflet Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
 </head>
 
 <body>
 
 <header>
     <h1>🌦 Weather Forecast Pro</h1>
-    <div>
-    <button onclick="setLanguage('en')">EN</button>
-    <button onclick="setLanguage('np')">NP</button>
-</div>
+
+    <div class="lang">
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('np')">NP</button>
+    </div>
 
     <div class="search-box">
-        <input type="text" id="cityInput" placeholder="Search any city...">
+        <input type="text" id="cityInput" placeholder="Search any city..." autocomplete="off">
         <button id="searchBtn">Search</button>
         <button id="gpsBtn">📍 My Location</button>
     </div>
@@ -38,104 +39,79 @@
 
 <main>
 
+<!-- CURRENT WEATHER -->
 <section class="current-weather">
-
-<h2 id="cityName">City Name</h2>
-
-<img id="weatherIcon" src="" alt="Weather Icon">
-
-<h1 id="temperature">--°C</h1>
-
-<p id="description">Loading...</p>
-
+    <h2 id="cityName">City Name</h2>
+    <h1 id="temperature">--°C</h1>
+    <p id="description">Loading...</p>
 </section>
 
+<!-- DETAILS -->
 <section class="weather-details">
 
-<div class="card">
-<h3>💨 Wind</h3>
-<p id="wind">-- km/h</p>
-</div>
+    <div class="card">
+        <h3>💨 Wind</h3>
+        <p id="wind">--</p>
+    </div>
 
-<div class="card">
-<h3>💧 Humidity</h3>
-<p id="humidity">--%</p>
-</div>
+    <div class="card">
+        <h3>💧 Humidity</h3>
+        <p id="humidity">--</p>
+    </div>
 
-<div class="card">
-<h3>🌧 Rain Chance</h3>
-<p id="rain">--%</p>
-</div>
+    <div class="card">
+        <h3>🌧 Rain</h3>
+        <p id="rain">--</p>
+    </div>
 
-<div class="card">
-<h3>🌅 Sunrise</h3>
-<p id="sunrise">--:--</p>
-</div>
+    <div class="card">
+        <h3>🌅 Sunrise</h3>
+        <p id="sunrise">--</p>
+    </div>
 
-<div class="card">
-<h3>🌇 Sunset</h3>
-<p id="sunset">--:--</p>
-</div>
-
-</section>
-
-<section>
-
-<h2>Hourly Forecast</h2>
-
-<div id="hourlyForecast" class="forecast-grid">
-
-</div>
+    <div class="card">
+        <h3>🌇 Sunset</h3>
+        <p id="sunset">--</p>
+    </div>
 
 </section>
 
+<!-- HOURLY -->
 <section>
-
-<h2>7-Day Forecast</h2>
-
-<div id="dailyForecast" class="forecast-grid">
-
-</div>
-
+    <h2>Hourly Forecast</h2>
+    <div id="hourlyForecast" class="forecast-grid"></div>
 </section>
 
+<!-- DAILY -->
 <section>
-
-<h2>Temperature Chart</h2>
-
-<canvas id="weatherChart"></canvas>
-
+    <h2>7-Day Forecast</h2>
+    <div id="dailyForecast" class="forecast-grid"></div>
 </section>
 
+<!-- CHART -->
 <section>
-
-<h2>Weather Map</h2>
-
-<div id="map"></div>
-
+    <h2>Temperature Chart</h2>
+    <canvas id="weatherChart"></canvas>
 </section>
 
+<!-- MAP -->
 <section>
-
-<h2>⭐ Favorite Cities</h2>
-
-<ul id="favoritesList"></ul>
-
+    <h2>Weather Map</h2>
+    <div id="map"></div>
 </section>
 
 </main>
 
 <footer>
-
-<p>© 2026 Weather Forecast Pro | Powered by Open-Meteo</p>
-
+    <p>© 2026 Weather Forecast Pro</p>
 </footer>
 
-<script src="script.js"></script>
-<script src="app-enhance.js"></script>
-<script src="map.js"></script>
-<script src="features.js"></script>
-<script src="ui.js"></script>
+<!-- JS FILES (IMPORTANT ORDER + SAFE LOAD) -->
+<script src="script.js" defer></script>
+<script src="app-enhance.js" defer></script>
+<script src="map.js" defer></script>
+<script src="features.js" defer></script>
+<script src="ui.js" defer></script>
 
 </body>
 </html>

@@ -47,24 +47,32 @@ async function getWeatherByCoords(lat, lon) {
 }
 
 // 🌦️ Main API call
-async function fetchWeather(lat, lon) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&hourly=temperature_2m&timezone=auto`;
+function loadForecast(data) {
+    const forecast = document.getElementById("forecast");
 
-    const data = await fetch(url).then(res => res.json());
+    if (!forecast) return;
 
-    const current = data.current_weather;
+    forecast.innerHTML = "";
 
-    tempEl.innerText = current.temperature + "°C";
-    descEl.innerText = "Wind: " + current.windspeed + " km/h";
-
-    windEl.innerText = current.windspeed + " km/h";
-    humidityEl.innerText = "--"; // not available in free API
-    rainEl.innerText = "--";
-
-    sunriseEl.innerText = data.daily.sunrise[0].split("T")[1];
-    sunsetEl.innerText = data.daily.sunset[0].split("T")[1];
-
-    loadChart(data);
-    loadMap(lat, lon);
-    loadForecast(data);
+    data.daily.time.forEach((day, index) => {
+        forecast.innerHTML += `
+        <div class="forecast-card">
+            <h4>${day}</h4>
+            <p>🌡 ${data.daily.temperature_2m_max[index]}° /
+            ${data.daily.temperature_2m_min[index]}°</p>
+        </div>
+        `;
+    });
 }
+
+function loadChart(data) {
+    console.log("Chart loaded");
+}
+
+function loadMap(lat, lon) {
+    console.log("Map loaded", lat, lon);
+}
+
+window.onload = () => {
+    getWeatherByCity("Kathmandu");
+};

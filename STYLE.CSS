@@ -100,6 +100,32 @@ footer {
     background: #1e88e5;
     color: white;
 }
+.forecast-card{
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+    margin:10px 0;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.weather-card{
+    background:linear-gradient(135deg,#7b2ff7,#a855f7);
+    color:white;
+    border-radius:20px;
+    padding:20px;
+}
+
+.details{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.detail-box{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+}
 
 /* DARK MODE */
 .dark {

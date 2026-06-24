@@ -47,6 +47,30 @@ async function getWeatherByCoords(lat, lon) {
 }
 
 // 🌦️ Main API call
+async function fetchWeather(lat, lon) {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=auto`;
+
+    const data = await fetch(url).then(res => res.json());
+
+    tempEl.innerText = Math.round(data.current.temperature_2m) + "°C";
+
+    descEl.innerText = "Feels Like " +
+        Math.round(data.current.apparent_temperature) + "°C";
+
+    windEl.innerText = Math.round(data.current.wind_speed_10m) + " km/h";
+
+    humidityEl.innerText = data.current.relative_humidity_2m + "%";
+
+    rainEl.innerText =
+        data.daily.temperature_2m_max[0] + "° / " +
+        data.daily.temperature_2m_min[0] + "°";
+
+    sunriseEl.innerText = data.daily.sunrise[0].split("T")[1];
+
+    sunsetEl.innerText = data.daily.sunset[0].split("T")[1];
+
+    loadForecast(data);
+}
 function loadForecast(data) {
     const forecast = document.getElementById("forecast");
 
